@@ -87,7 +87,20 @@ public class Player : MonoBehaviour
     }
 
    
+    void Finish() {
 
+        StopTween();
+        _pointA.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _pointB.transform.rotation = new Quaternion(0, 0, 0, 0);
+        _myTween = null;
+        Transform point = _isPointA ? _pointA : _pointB;
+        _myTween = point.DORotate(new Vector3(point.transform.rotation.x,
+            point.transform.rotation.y,
+            point == _pointA ? 180 : -180),
+            .3f)
+            .SetLoops(-1, LoopType.Incremental)
+            .SetEase(Ease.Linear);
+    }
     void StopTween() { _myTween.Kill(); }
     void ChangePoint()
     {
@@ -103,6 +116,8 @@ public class Player : MonoBehaviour
         if (!GameManager.instantiate.GetTiklanabilir()) return;
         TiklanmaEfect();
         CheckTorch();
+        if (GameManager.instantiate.GetBolumBitti()) Finish();
+
 
     }
 

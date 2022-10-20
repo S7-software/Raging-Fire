@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform _cameraParent;
     [SerializeField] Transform _cameraMain;
     [SerializeField] float _yumusatma = 10f;
+    [SerializeField] GameObject _UI_RESULT;
     bool _kamerayiTakipet = false;
+    bool _bolumBitti = false;
     Vector3 _cameraNew;
     CANVAS_UI _canvas_UI;
     HAVAI_FISEK _havai_Fisek;
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
         _havai_Fisek = FindObjectOfType<HAVAI_FISEK>();
         _tweenTypes = _playerTweens.GetChosenTweens(tweenIndexs);
         SetLevelDegerler();
+        _bolumBitti = false;
     }
     private void Start()
     {
@@ -64,6 +67,7 @@ public class GameManager : MonoBehaviour
     void BolumBitti(int kacYildiz)
     {
         _havai_Fisek.SetStartFinish(kacYildiz);
+        Instantiate(_UI_RESULT);
     }
 
 
@@ -108,9 +112,10 @@ public class GameManager : MonoBehaviour
         if (_toplamMesaleSayisi == _toplananMesaleSayisi)
         {
             BolumBitti(3);
+            _bolumBitti = true;
         }
     }
-
+    public bool GetBolumBitti() => _bolumBitti;
 
 
     //SOL GOSTERGE
