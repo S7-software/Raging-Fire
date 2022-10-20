@@ -3,6 +3,7 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using System;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,11 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int[] tweenIndexs;
     int _tweenIdex = 0;
     [SerializeField] PlayerTweens _playerTweens;
-    [SerializeField] float donusDerece = 180f;
-    [SerializeField] float duration = 1f;
-    [SerializeField] LoopType loopType = LoopType.Incremental;
-    [SerializeField] Ease ease = Ease.Linear;
-
+    List<PlayerTweens.TweenTypeValues> _tweenTypes;
     [Header("Componentler")]
     
     [SerializeField] Transform _cameraParent;
@@ -37,6 +34,7 @@ public class GameManager : MonoBehaviour
         instantiate = this;
         _canvas_UI = FindObjectOfType<CANVAS_UI>();
         _havai_Fisek = FindObjectOfType<HAVAI_FISEK>();
+        _tweenTypes = _playerTweens.GetChosenTweens(tweenIndexs);
         SetLevelDegerler();
     }
     private void Start()
@@ -152,12 +150,13 @@ public class GameManager : MonoBehaviour
     //}
     public Tween GetTween(Transform point, bool isPointA)
     {
-        if (_tweenIdex >= tweenIndexs.Length) _tweenIdex = 0;
+        if (_tweenIdex >= _tweenTypes.Count) _tweenIdex = 0;
+        PlayerTweens.TweenTypeValues values = _tweenTypes[_tweenIdex];
 
-        float dnsDrc = _playerTweens.tweens[_tweenIdex].donusDerece;
-        float drtn = _playerTweens.tweens[_tweenIdex].duration;
-        Ease ease = _playerTweens.tweens[_tweenIdex].ease;
-        LoopType loopType = _playerTweens.tweens[_tweenIdex].loopType;
+        float dnsDrc = values.donusDerece;
+        float drtn = values.duration;
+        Ease ease = values.ease;
+        LoopType loopType = values.loopType;
         float x = point.transform.rotation.x;
         float y = point.transform.rotation.y;
         Vector3 temp = new Vector3(x, y, isPointA ? dnsDrc : -dnsDrc);

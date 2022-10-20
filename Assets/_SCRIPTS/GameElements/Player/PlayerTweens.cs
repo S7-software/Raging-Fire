@@ -7,23 +7,29 @@ using System.Collections.Generic;
 public class PlayerTweens : MonoBehaviour
 {
 
-    public TweenType[] tweens;
+    [SerializeField] TweenTypeValues[] tweens;
 
-    public List<TweenType> GetChosenTweens( params int[] indexs)
+    public List<TweenTypeValues> GetChosenTweens( params int[] indexs)
     {
-        List<TweenType> temp = new List<TweenType>();
+        List<TweenTypeValues> temp = new List<TweenTypeValues>();
+        int errorIndex = 0;
         foreach (var item in indexs)
         {
             if (item > -1 && item < tweens.Length && tweens.Length != 0)
             {
                 temp.Add(tweens[item]);
             }
+            else
+            {
+                Debug.Log("PlayerTweens--GetChosenTweens error--" + errorIndex);
+            }
+            errorIndex++;
         }
 
         return temp;
     }
 [Serializable]
-public class TweenType
+public class TweenTypeValues
 {
     public float donusDerece;
     public float duration;
