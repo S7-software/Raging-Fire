@@ -22,23 +22,15 @@ public class UI__RESULT : MonoBehaviour
         _stars[1].DOFade(0,0);
         _stars[2].DOFade(0,0);
     }
-    private void Start()
-    {
-        _canvasGroup.DOFade(1, _duration).SetEase(Ease.OutBack);
-        _trnsTable.DOMoveY(-200, _duration).From().SetEase(Ease.OutBack);
-        _trnsTable.DOScale(Vector3.zero, _duration).From().SetEase(Ease.OutBack);
+  
 
-        SetStars(3, 1f);
-        
-    }
-
-    void SetStars(int count,float delay)
+    void SetStars(int count,float delay,bool together)
     {
         float delayMassiv = 0.6f;
         for (int i = 0; i < count; i++)
         {
             SetStar(_stars[i], 0.6f, delay);
-            delay += delayMassiv;
+           if(!together) delay += delayMassiv;
             if (count > 3) break;
         }
 
@@ -48,5 +40,15 @@ public class UI__RESULT : MonoBehaviour
     {
         star.transform.DOLocalMoveY(10f, duration).From().SetEase(Ease.OutCubic).SetDelay(delay);
         star.DOFade(1, duration).SetEase(Ease.OutCubic).SetDelay(delay);
+    }
+
+    public void SetResult(int stars, bool starsTogether,int coin,int level )
+    {
+        _canvasGroup.DOFade(1, _duration).SetEase(Ease.OutBack);
+        _trnsTable.DOMoveY(-200, _duration).From().SetEase(Ease.OutBack);
+        _trnsTable.DOScale(Vector3.zero, _duration).From().SetEase(Ease.OutBack);
+        _txtCoin.text = "+" + coin;
+        _txtLevel.text ="LEVEL " + level;
+        SetStars(stars, .3f,starsTogether);
     }
 }

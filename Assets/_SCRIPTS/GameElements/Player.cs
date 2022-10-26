@@ -28,7 +28,16 @@ public class Player : MonoBehaviour
     {
         RunFrom(_pointA, _duration);
     }
-  
+
+    private void Update()
+    {
+        if (GameManager.instantiate._testOn)
+        {
+            CheckTorch();
+            if (GameManager.instantiate.GetBolumBitti()) Finish();
+        }
+    }
+
 
 
     void CheckTorch()
@@ -53,7 +62,7 @@ public class Player : MonoBehaviour
                 break;
             }
         }
-        if (!founded)
+        if (!founded&&!GameManager.instantiate._testOn)
         {
             GameManager.instantiate.ShakeScreen(time, str, vib, rnd);
             GameManager.instantiate.SetHataliTiklama();

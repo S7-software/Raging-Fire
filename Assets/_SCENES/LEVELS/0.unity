@@ -5836,6 +5836,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2850783022045385986, guid: 808bef3badb3640ed81ccf8bb864454d, type: 3}
+      propertyPath: _testOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850783022045385986, guid: 808bef3badb3640ed81ccf8bb864454d, type: 3}
       propertyPath: _UI_RESULT
       value: 
       objectReference: {fileID: 7181136235106997189, guid: 1607e66f6d911473cafa19a73613fc62, type: 3}

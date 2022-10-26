@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("Level Ayarlari")]
     [SerializeField] float geriSayimTiklamaIcin = 1;
     [SerializeField] int currentLevel = 1;
+    public bool _testOn =false;
     [Header("Level Ayarlari Player")]
     [SerializeField] int[] tweenIndexs;
     int _tweenIdex = 0;
@@ -64,10 +65,12 @@ public class GameManager : MonoBehaviour
 
 
     //LEVEL SONU
-    void BolumBitti(int kacYildiz)
+    IEnumerator BolumBitti(int kacYildiz, float delayShowUI)
     {
         _havai_Fisek.SetStartFinish(kacYildiz);
-        Instantiate(_UI_RESULT);
+      GameObject result=  Instantiate(_UI_RESULT);
+        yield return new WaitForSeconds(delayShowUI);
+        result.GetComponent<UI__RESULT>().SetResult(kacYildiz, true, 150, 3);
     }
 
 
@@ -111,7 +114,7 @@ public class GameManager : MonoBehaviour
         _canvas_UI.SetLevelGosterge(_toplananMesaleSayisi / _toplamMesaleSayisi, currentLevel);
         if (_toplamMesaleSayisi == _toplananMesaleSayisi)
         {
-            BolumBitti(3);
+           StartCoroutine( BolumBitti(3,2f));
             _bolumBitti = true;
         }
     }
