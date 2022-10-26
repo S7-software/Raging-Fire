@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         float deger = _toplananMesaleSayisi / _toplamMesaleSayisi;
         _canvas_UI.SetLevelGosterge(deger, currentLevel);
         _canvas_UI.SetAltGosterge(1, Color.green);
+        _canvas_UI.SetCoin(999);///COIN
     }
 
 
@@ -125,6 +126,8 @@ public class GameManager : MonoBehaviour
     public void SetHataliTiklama()
     {
         _geriSayimTiklamaIcin = 0;
+        _canvas_UI.AddMistake();
+
     }
 
     void SolGosterge()
@@ -146,7 +149,6 @@ public class GameManager : MonoBehaviour
     //UI
     public void Restart() { DOTween.KillAll(); SceneManager.LoadScene(0); }
     public void Exit() { Application.Quit(); }
-
     //PlayerDonme
     //public Tween GetTween(Transform point,bool isPointA)
     //{

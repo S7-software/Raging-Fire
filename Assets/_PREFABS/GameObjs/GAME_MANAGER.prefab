@@ -45,10 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   geriSayimTiklamaIcin: 1
   currentLevel: 1
-  donusDerece: 180
-  duration: 1
-  loopType: 2
-  ease: 1
+  _testOn: 0
+  tweenIndexs: 00000000
+  _playerTweens: {fileID: 0}
   _cameraParent: {fileID: 0}
   _cameraMain: {fileID: 0}
   _yumusatma: 10
+  _UI_RESULT: {fileID: 7181136235106997189, guid: 1607e66f6d911473cafa19a73613fc62, type: 3}
