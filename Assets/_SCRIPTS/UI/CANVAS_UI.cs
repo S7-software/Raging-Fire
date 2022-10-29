@@ -9,8 +9,9 @@ public class CANVAS_UI : MonoBehaviour
 {
     [SerializeField] Image _imgSolGosterge, _imgSagGosterge,_imgSolGosterge2;
     [SerializeField] TMP_Text _txtCurrent, _txtNext,_txtCoin;
-    [SerializeField] Button _btnExit, _btnReset, _btnMainClick;
+    [SerializeField] Button  _btnPause, _btnMainClick;
     [SerializeField] Image[] _imgsFail;
+    [SerializeField] GameObject _CANVAS_PAUSE;
     Player _player;
     //Tween _sagCizgi;
     private void Awake()
@@ -28,9 +29,9 @@ public class CANVAS_UI : MonoBehaviour
 
     private void SetButtonHandles()
     {
-        _btnExit.onClick.AddListener(() => { GameManager.instantiate.Exit(); });
+//        _btnExit.onClick.AddListener(() => { GameManager.instantiate.Exit(); });
         _btnMainClick.onClick.AddListener(() => { _player.Toogle(); });
-        _btnReset.onClick.AddListener(() => { GameManager.instantiate.Restart(); });
+        _btnPause.onClick.AddListener(() => { GameManager.instantiate.Pause(); });
     }
 
     public void SetAltGosterge(float val, Color color)

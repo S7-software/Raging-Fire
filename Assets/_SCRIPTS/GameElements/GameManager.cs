@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform _cameraParent;
     [SerializeField] Transform _cameraMain;
     [SerializeField] float _yumusatma = 10f;
-    [SerializeField] GameObject _UI_RESULT;
+    [SerializeField] GameObject _UI_RESULT,_UI_PAUSE,_UI_SETTINGS,_UI_MAIN_MENU,_UI_LEVELS;
     bool _kamerayiTakipet = false;
     bool _bolumBitti = false;
     Vector3 _cameraNew;
@@ -147,8 +147,11 @@ public class GameManager : MonoBehaviour
     }
 
     //UI
-    public void Restart() { DOTween.KillAll(); SceneManager.LoadScene(0); }
+    public void Pause() { Instantiate(_UI_PAUSE); }
     public void Exit() { Application.Quit(); }
+    public void CloneUI_LEVELS() { Instantiate(_UI_LEVELS); }
+    public void CloneUI_MAIN_MENU() { Instantiate(_UI_MAIN_MENU); }
+    public void CloneUI_SETTINGS() { Instantiate(_UI_SETTINGS); }
     //PlayerDonme
     //public Tween GetTween(Transform point,bool isPointA)
     //{
