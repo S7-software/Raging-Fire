@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     //LEVEL SONU
     IEnumerator BolumBitti(int kacYildiz, float delayShowUI)
     {
+        SetBtnActivePause(false);
         _havai_Fisek.SetStartFinish(kacYildiz);
       GameObject result=  Instantiate(_UI_RESULT);
         yield return new WaitForSeconds(delayShowUI);
@@ -147,11 +148,15 @@ public class GameManager : MonoBehaviour
     }
 
     //UI
-    public void Pause() { Instantiate(_UI_PAUSE); }
+    public void Pause() {
+        Instantiate(_UI_PAUSE);
+        SetBtnActivePause(false);
+    }
+    public void SetBtnActivePause(bool aktif) { _canvas_UI.SetBtnActivePause(aktif); }
     public void Exit() { Application.Quit(); }
-    public void CloneUI_LEVELS() { Instantiate(_UI_LEVELS); }
-    public void CloneUI_MAIN_MENU() { Instantiate(_UI_MAIN_MENU); }
-    public void CloneUI_SETTINGS() { Instantiate(_UI_SETTINGS); }
+    public void CloneUI_LEVELS() { Instantiate(_UI_LEVELS); SetBtnActivePause(false); }
+    public void CloneUI_MAIN_MENU() { Instantiate(_UI_MAIN_MENU); SetBtnActivePause(false); }
+    public void CloneUI_SETTINGS() { Instantiate(_UI_SETTINGS); SetBtnActivePause(false); }
     //PlayerDonme
     //public Tween GetTween(Transform point,bool isPointA)
     //{

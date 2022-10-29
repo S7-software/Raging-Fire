@@ -11,7 +11,6 @@ public class CANVAS_UI : MonoBehaviour
     [SerializeField] TMP_Text _txtCurrent, _txtNext,_txtCoin;
     [SerializeField] Button  _btnPause, _btnMainClick;
     [SerializeField] Image[] _imgsFail;
-    [SerializeField] GameObject _CANVAS_PAUSE;
     Player _player;
     //Tween _sagCizgi;
     private void Awake()
@@ -29,7 +28,6 @@ public class CANVAS_UI : MonoBehaviour
 
     private void SetButtonHandles()
     {
-//        _btnExit.onClick.AddListener(() => { GameManager.instantiate.Exit(); });
         _btnMainClick.onClick.AddListener(() => { _player.Toogle(); });
         _btnPause.onClick.AddListener(() => { GameManager.instantiate.Pause(); });
     }
@@ -55,7 +53,7 @@ public class CANVAS_UI : MonoBehaviour
         _txtCurrent.text = currentLevel.ToString();
         _txtNext.text = (currentLevel + 1).ToString();
     }
-
+    public void SetBtnActivePause(bool aktif) { _btnPause.gameObject.SetActive(aktif); }
     public void SetCoin(int count)
     {
         _txtCoin.text = "" + count;

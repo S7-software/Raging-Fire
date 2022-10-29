@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
    
     void Finish() {
-
+       GameManager.instantiate.SetBtnActivePause(false);
         StopTween();
         _pointA.transform.rotation = new Quaternion(0, 0, 0, 0);
         _pointB.transform.rotation = new Quaternion(0, 0, 0, 0);

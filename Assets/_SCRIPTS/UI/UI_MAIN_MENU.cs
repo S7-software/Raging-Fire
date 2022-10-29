@@ -25,6 +25,7 @@ public class UI_MAIN_MENU : MonoBehaviour
         _btnPlay.onClick.AddListener(() =>
         {
             STUIAnim.Out(_panel, _canvasGroup, _transformTable, _durationAnim, gameObject);
+            Invoke("ShowPauseBtn", _durationAnim - 0.1f);
         });
         _btnSettings.onClick.AddListener(() =>
         {
@@ -43,6 +44,6 @@ public class UI_MAIN_MENU : MonoBehaviour
     }
     void Settings() { GameManager.instantiate.CloneUI_SETTINGS(); }
     void Levels() { GameManager.instantiate.CloneUI_LEVELS(); }
-
+    void ShowPauseBtn() { GameManager.instantiate.SetBtnActivePause(true); }
 
 }
