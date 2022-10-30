@@ -49,8 +49,8 @@ public class Player : MonoBehaviour
        
             if (item.gameObject.tag == Tags.TouchPoint.ToString())
             {
-          
 
+                SoundBox.instance.PlayOneShot(NamesOfSound.clickArama);
                 item.gameObject.tag = Tags.OnTouchPonit.ToString();
                 item.GetComponent<Torch>().SetTorch(true);
                 ChangePoint();
@@ -64,6 +64,8 @@ public class Player : MonoBehaviour
         }
         if (!founded&&!GameManager.instantiate._testOn)
         {
+            SoundBox.instance.PlayOneShot(NamesOfSound.clickCikis);
+
             GameManager.instantiate.ShakeScreen(time, str, vib, rnd);
             GameManager.instantiate.SetHataliTiklama();
         }
