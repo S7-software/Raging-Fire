@@ -33,8 +33,18 @@ public class UI_LEVELS : MonoBehaviour
 
             gameObject.GetComponent<LevelHandle>().SetButton(i, 0, false);
         }
+        
 
-        _btnExit.onClick.AddListener(() => { STUIAnim.Out(_panel, _canvasGroup, _trasformTable, _duration, gameObject); Invoke("Menu", _duration - 0.1f); });
+        _btnExit.onClick.AddListener(() =>
+        {
+            PlayerPrefs.SetFloat("lastPositionY", _transformContent.localPosition.y);
+            STUIAnim.Out(_panel, _canvasGroup, _trasformTable, _duration, gameObject); Invoke("Menu", _duration - 0.1f);
+        });
+
+        _transformContent.localPosition = new Vector3(
+            _transformContent.localPosition.x,
+            PlayerPrefs.GetFloat("lastPositionY", -4000f),
+            _transformContent.localPosition.z);
     }
 
 
