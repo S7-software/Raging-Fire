@@ -37,7 +37,7 @@ public class UI_MAIN_MENU : MonoBehaviour
             STUIAnim.Out(_panel, _canvasGroup, _transformTable, _durationAnim, gameObject);
             Invoke("Levels", _durationAnim - 0.1f);
         });
-        _btnSettings.onClick.AddListener(() =>
+        _btnExit.onClick.AddListener(() =>
         {
             Application.Quit();
         });

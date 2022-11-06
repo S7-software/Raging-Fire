@@ -19,20 +19,19 @@ public class UI_LEVELS : MonoBehaviour
     }
     private void Start()
     {
+        
         STUIAnim.In(_panel, _canvasGroup, _trasformTable, _duration);
-
-        for (int i = 1; i < 25; i++)
+        int maxLevel = SaveSystem.GetMaxLevel();
+        for (int i = 1; i < 21; i++)
         {
             GameObject gameObject = Instantiate(_level,_transformContent);
           
-            gameObject.GetComponent<LevelHandle>().SetButton(i, Random.Range(1, 4), true);
+            gameObject.GetComponent<LevelHandle>().SetButton(
+                i,
+                SaveSystem.GetStarsOfLevel(i),
+                i<=maxLevel);
         }
-        for (int i = 25; i < 30; i++)
-        {
-            GameObject gameObject = Instantiate(_level, _transformContent);
-
-            gameObject.GetComponent<LevelHandle>().SetButton(i, 0, false);
-        }
+    
         
 
         _btnExit.onClick.AddListener(() =>

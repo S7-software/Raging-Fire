@@ -57,6 +57,7 @@ public class UI__RESULT : MonoBehaviour
         _txtCoin.text = "+" + coin;
         _txtLevel.text ="LEVEL " + level;
         SetStars(stars, .3f,starsTogether);
+      
     }
 
     private void SetButtons(int stars)
@@ -72,12 +73,17 @@ public class UI__RESULT : MonoBehaviour
             });
 
             _btnAds.gameObject.SetActive(UnityEngine.Random.Range(0, 2) == 1);
+           
         }
         else
         {
             _btnNext.interactable = false;
             _btnRestart.onClick.AddListener(() => { STScene.Restart(); });
-            _btnMainMenu.onClick.AddListener(() => { STScene.GoTo(NameOfScanes.Main); });
+            _btnMainMenu.onClick.AddListener(() =>
+            {
+                STUIAnim.Out(_panel, _canvasGroup, _trnsTable, _duration, gameObject);
+                Invoke("Menu", _duration - 0.1f);
+            });
             _btnAds.gameObject.SetActive(false);
         }
     }

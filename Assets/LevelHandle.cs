@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class LevelHandle : MonoBehaviour
 {
     [SerializeField] Color _on, _off;
@@ -27,7 +27,7 @@ public class LevelHandle : MonoBehaviour
         }
         _myBtn.interactable = aktif;
         _myBtn.image.color = aktif ? _on : _off;
-        _myBtn.onClick.AddListener(() => { FindObjectOfType<UI_LEVELS>().GoToLevel(_index); });
+        _myBtn.onClick.AddListener(() => { DOTween.KillAll();  FindObjectOfType<UI_LEVELS>().GoToLevel(_index); });
     }
    
 }

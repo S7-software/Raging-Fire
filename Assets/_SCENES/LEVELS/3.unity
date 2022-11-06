@@ -3001,12 +3001,12 @@ Transform:
   m_Children:
   - {fileID: 694749342}
   - {fileID: 726148428}
-  - {fileID: 230324358}
   - {fileID: 687045871}
+  - {fileID: 230324358}
   - {fileID: 118194807}
   - {fileID: 1913729207}
-  - {fileID: 1239391657}
   - {fileID: 762781329}
+  - {fileID: 1239391657}
   m_Father: {fileID: 241318393}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4227,6 +4227,10 @@ PrefabInstance:
       propertyPath: _cameraMain
       value: 
       objectReference: {fileID: 1066183481}
+    - target: {fileID: 2850783022045385986, guid: 808bef3badb3640ed81ccf8bb864454d, type: 3}
+      propertyPath: currentLevel
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2850783022045385986, guid: 808bef3badb3640ed81ccf8bb864454d, type: 3}
       propertyPath: _cameraParent
       value: 

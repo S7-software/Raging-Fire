@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UI_SETTINGS : MonoBehaviour
 {
@@ -56,6 +57,9 @@ public class UI_SETTINGS : MonoBehaviour
         _btnReset.onClick.AddListener(() =>
         {
             SoundBox.instance.PlayOneShot(NamesOfSound.clickGiris);
+            DOTween.KillAll();
+            PlayerPrefs.DeleteAll();
+            STScene.GoTo(NameOfScanes.Intro);
         });
     }
 

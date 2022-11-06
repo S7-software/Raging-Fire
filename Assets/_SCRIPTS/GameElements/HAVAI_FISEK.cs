@@ -15,7 +15,7 @@ public class HAVAI_FISEK : MonoBehaviour
         {
             case 2:
                 Run(_trails[0], 0);
-                Run(_trails[3], _delay);
+                Run(_trails[2], _delay);
                 break;
                 
 

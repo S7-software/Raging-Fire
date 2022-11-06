@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     float _toplamMesaleSayisi, _toplananMesaleSayisi;
     Vector3 _tempCameraPos;
+    int _yildiz;
     private void Awake()
     {
         instantiate = this;
@@ -46,6 +47,8 @@ public class GameManager : MonoBehaviour
         
         SetUI();
         SetGameObjectsValues();
+        SaveSystem.SetCurrentLevel(currentLevel);
+        _yildiz = 3;
  
     }
 
@@ -73,6 +76,8 @@ public class GameManager : MonoBehaviour
       GameObject result=  Instantiate(_UI_RESULT);
         yield return new WaitForSeconds(delayShowUI);
         result.GetComponent<UI__RESULT>().SetResult(kacYildiz, true, 150, 3);
+        SaveSystem.SetMaxLevel(currentLevel + 1);
+        SaveSystem.SetStarsOfLevel(currentLevel, kacYildiz);
     }
 
 
@@ -116,18 +121,24 @@ public class GameManager : MonoBehaviour
         _canvas_UI.SetLevelGosterge(_toplananMesaleSayisi / _toplamMesaleSayisi, currentLevel);
         if (_toplamMesaleSayisi == _toplananMesaleSayisi)
         {
-           StartCoroutine( BolumBitti(3,2f));
+           StartCoroutine( BolumBitti(_yildiz,2f));
             _bolumBitti = true;
         }
     }
     public bool GetBolumBitti() => _bolumBitti;
 
 
-    //SOL GOSTERGE
+    // GOSTERGE TIKLAMA
     public void SetHataliTiklama()
     {
         _geriSayimTiklamaIcin = 0;
         _canvas_UI.AddMistake();
+        _yildiz--;
+        if (_yildiz == 0)
+        {
+            GameObject result = Instantiate(_UI_RESULT);
+            result.GetComponent<UI__RESULT>().SetResult(0,true,0,currentLevel);
+        }
 
     }
 
