@@ -9,6 +9,7 @@ public class Torch : MonoBehaviour
     bool _yaniyor = false;
     public bool _yaniyorD = false;
     Collider _myCollider;
+    Tween _myTween;
     private void Awake()
     {
         _myCollider = GetComponent<Collider>();
@@ -26,6 +27,8 @@ public class Torch : MonoBehaviour
         if (_yaniyor) return;
         _yaniyor = yaniyor;
         _myCollider.enabled = !yaniyor;
+        _myTween.Kill();
+        _myTween = null;
         foreach (var item in _effect)
         {
             item.SetActive(_yaniyor);
@@ -44,6 +47,8 @@ public class Torch : MonoBehaviour
     }
     void RotateRandom(float duration)
     {
-        _torchModel.transform.DOLocalRotate(new Vector3(0, 0, Random.Range(0f, 361f)), duration);
+        if (_yaniyor) return;
+        _myTween = null;
+       _myTween= _torchModel.transform.DOLocalRotate(new Vector3(0, 0, Random.Range(0f, 361f)), duration);
     }
 }

@@ -13,6 +13,7 @@ public class CANVAS_DEBUG : MonoBehaviour
 
     void Awake()
     {
+        STDevelopment.Testing(gameObject);
         btnVolume.onClick.AddListener(() =>
         {
             bool tempDurum = !volume.enabled;
