@@ -53,6 +53,6 @@ MonoBehaviour:
   _yumusatma: 10
   _UI_RESULT: {fileID: 7181136235106997189, guid: 1607e66f6d911473cafa19a73613fc62, type: 3}
   _UI_PAUSE: {fileID: 8049511786000446820, guid: 8b8d3b79a960a47878cacbe63ae8ea8c, type: 3}
-  _UI_SETTINGS: {fileID: 0}
+  _UI_SETTINGS: {fileID: 764429733414223207, guid: 3ee96bea919c74e4ba5751ca8378e9ee, type: 3}
   _UI_MAIN_MENU: {fileID: 3670833963094757376, guid: f7cab4ad515cb4baaa634061a7fc8f48, type: 3}
   _UI_LEVELS: {fileID: 7168267014585524942, guid: fe63b73a2dd8c402bba61ed2c3281bd3, type: 3}

@@ -49,10 +49,11 @@ public class UI__RESULT : MonoBehaviour
     public void SetResult(int stars, bool starsTogether,int coin,int level )
     {
         SetButtons(stars);
-        _panel.DOFade(0.1f, _duration).SetEase(Ease.OutBack);
-        _canvasGroup.DOFade(1, _duration).SetEase(Ease.OutBack);
-        _trnsTable.DOMoveY(-200, _duration).From().SetEase(Ease.OutBack);
-        _trnsTable.DOScale(Vector3.zero, _duration).From().SetEase(Ease.OutBack);
+        STUIAnim.In(_panel, _canvasGroup, _trnsTable, _duration);
+        //_panel.DOFade(0.1f, _duration).SetEase(Ease.OutBack);
+        //_canvasGroup.DOFade(1, _duration).SetEase(Ease.OutBack);
+        //_trnsTable.DOMoveY(-200, _duration).From().SetEase(Ease.OutBack);
+        //_trnsTable.DOScale(Vector3.zero, _duration).From().SetEase(Ease.OutBack);
         _txtCoin.text = "+" + coin;
         _txtLevel.text ="LEVEL " + level;
         SetStars(stars, .3f,starsTogether);
@@ -64,7 +65,12 @@ public class UI__RESULT : MonoBehaviour
         {
             _btnNext.onClick.AddListener(() => { DOTween.KillAll(); STScene.GoToNext(); });
             _btnRestart.onClick.AddListener(() => { DOTween.KillAll(); STScene.Restart(); });
-            _btnMainMenu.onClick.AddListener(() => { DOTween.KillAll(); STScene.GoTo(NameOfScanes.Main); });
+            _btnMainMenu.onClick.AddListener(() =>
+            {
+                STUIAnim.Out(_panel, _canvasGroup, _trnsTable, _duration, gameObject);
+                Invoke("Menu", _duration -.1f);
+            });
+
             _btnAds.gameObject.SetActive(UnityEngine.Random.Range(0, 2) == 1);
         }
         else
@@ -75,4 +81,5 @@ public class UI__RESULT : MonoBehaviour
             _btnAds.gameObject.SetActive(false);
         }
     }
+    void Menu() { GameManager.instantiate.CloneUI_MAIN_MENU(); }
 }
