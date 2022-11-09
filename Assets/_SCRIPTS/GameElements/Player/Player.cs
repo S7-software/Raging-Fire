@@ -18,11 +18,11 @@ public class Player : MonoBehaviour
     public float str = 0.5f;
     public int vib = 10;
     public float rnd = 0.5f;
-
+    Rigidbody _myRigidbody;
     Tween _myTween;
     private void Awake()
     {
-
+        _myRigidbody = GetComponent<Rigidbody>();
     }
     void Start()
     {
@@ -130,6 +130,12 @@ public class Player : MonoBehaviour
         if (GameManager.instantiate.GetBolumBitti()) Finish();
 
 
+    }
+
+    public void Broke()
+    {
+        _myRigidbody.isKinematic = false;
+        _myRigidbody.useGravity = true;
     }
 
     void SetupPlayerAssets(bool isPointA)

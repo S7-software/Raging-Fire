@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     float _toplamMesaleSayisi, _toplananMesaleSayisi;
     Vector3 _tempCameraPos;
-    int _yildiz;
+   public int _yildiz;
     private void Awake()
     {
         instantiate = this;
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
     public bool GetBolumBitti() => _bolumBitti;
 
 
-    // GOSTERGE TIKLAMA
+    // GOSTERGE TIKLAMA VE HATA
     public void SetHataliTiklama()
     {
         _geriSayimTiklamaIcin = 0;
@@ -136,7 +136,11 @@ public class GameManager : MonoBehaviour
         _yildiz--;
         if (_yildiz == 0)
         {
+            SetBtnActivePause(false);
+            Player player = FindObjectOfType<Player>();
+            player.Broke();
             GameObject result = Instantiate(_UI_RESULT);
+            
             result.GetComponent<UI__RESULT>().SetResult(0,true,0,currentLevel);
         }
 

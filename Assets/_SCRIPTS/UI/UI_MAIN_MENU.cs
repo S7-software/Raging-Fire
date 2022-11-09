@@ -22,11 +22,19 @@ public class UI_MAIN_MENU : MonoBehaviour
     private void Start()
     {
         STUIAnim.In(_panel, _canvasGroup, _transformTable, _durationAnim);
-        _btnPlay.onClick.AddListener(() =>
+        if (GameManager.instantiate._yildiz == 0)
+        {
+            _btnPlay.interactable = false;
+        }
+        else
+        {
+_btnPlay.onClick.AddListener(() =>
         {
             STUIAnim.Out(_panel, _canvasGroup, _transformTable, _durationAnim, gameObject);
             Invoke("ShowPauseBtn", _durationAnim - 0.1f);
         });
+        }
+        
         _btnSettings.onClick.AddListener(() =>
         {
             STUIAnim.Out(_panel, _canvasGroup, _transformTable, _durationAnim, gameObject);
