@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instantiate = this;
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
         _canvas_UI = FindObjectOfType<CANVAS_UI>();
         _havai_Fisek = FindObjectOfType<HAVAI_FISEK>();
         _tweenTypes = _playerTweens.GetChosenTweens(tweenIndexs);
