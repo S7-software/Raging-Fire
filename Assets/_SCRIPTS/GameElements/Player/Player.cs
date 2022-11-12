@@ -49,10 +49,15 @@ public class Player : MonoBehaviour
        
             if (item.gameObject.tag == Tags.TouchPoint.ToString())
             {
-
+                Torch torch = item.GetComponent<Torch>();
                 SoundBox.instance.PlayOneShot(NamesOfSound.clickArama);
                 item.gameObject.tag = Tags.OnTouchPonit.ToString();
-                item.GetComponent<Torch>().SetTorch(true);
+                torch.SetTorch(true);
+                if (torch.IsCoin())
+                {
+                    GameManager.instantiate.CollectCoin();
+                    torch.SetCoin(false);
+                }
                 ChangePoint();
                 founded = true;
                 GameManager.instantiate.SetNevLocForCamera(item.gameObject.transform.parent.InverseTransformPoint(item.gameObject.transform.position));

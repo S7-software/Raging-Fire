@@ -11,17 +11,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] float geriSayimTiklamaIcin = 1;
     [SerializeField] int currentLevel = 1;
     public bool _testOn =false;
+
     [Header("Level Ayarlari Player")]
     [SerializeField] int[] tweenIndexs;
     int _tweenIdex = 0;
     [SerializeField] PlayerTweens _playerTweens;
     List<PlayerTweens.TweenTypeValues> _tweenTypes;
+
     [Header("Componentler")]
-    
     [SerializeField] Transform _cameraParent;
     [SerializeField] Transform _cameraMain;
     [SerializeField] float _yumusatma = 10f;
     [SerializeField] GameObject _UI_RESULT,_UI_PAUSE,_UI_SETTINGS,_UI_MAIN_MENU,_UI_LEVELS;
+
     bool _kamerayiTakipet = false;
     bool _bolumBitti = false;
     Vector3 _cameraNew;
@@ -32,11 +34,12 @@ public class GameManager : MonoBehaviour
 
     float _toplamMesaleSayisi, _toplananMesaleSayisi;
     Vector3 _tempCameraPos;
-   public int _yildiz;
+    public int _yildiz,_coinCollected=0,_ownCoin;
     private void Awake()
     {
         instantiate = this;
         currentLevel = SceneManager.GetActiveScene().buildIndex;
+        _ownCoin = SaveSystem.GetOwnCoin();
         _canvas_UI = FindObjectOfType<CANVAS_UI>();
         _havai_Fisek = FindObjectOfType<HAVAI_FISEK>();
         _tweenTypes = _playerTweens.GetChosenTweens(tweenIndexs);
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
         
         SetUI();
         SetGameObjectsValues();
+        SetCoinOfTorch();
         SaveSystem.SetCurrentLevel(currentLevel);
         _yildiz = 3;
  
@@ -65,7 +69,21 @@ public class GameManager : MonoBehaviour
         float deger = _toplananMesaleSayisi / _toplamMesaleSayisi;
         _canvas_UI.SetLevelGosterge(deger, currentLevel);
         _canvas_UI.SetAltGosterge(1, Color.green);
-        _canvas_UI.SetCoin(999);///COIN
+        _canvas_UI.SetCoin(_ownCoin);
+    }
+
+    void SetCoinOfTorch()
+    {
+        bool coinAtandi = false;
+        Torch[] torches = FindObjectsOfType<Torch>();
+        while (!coinAtandi)
+        {
+            Torch torch = torches[UnityEngine.Random.Range(0, torches.Length)];
+            if (!torch.IsBurning())
+            {
+                torch.AddCoin();
+                coinAtandi = true;            }
+        }
     }
 
 
@@ -76,7 +94,7 @@ public class GameManager : MonoBehaviour
         _havai_Fisek.SetStartFinish(kacYildiz);
       GameObject result=  Instantiate(_UI_RESULT);
         yield return new WaitForSeconds(delayShowUI);
-        result.GetComponent<UI__RESULT>().SetResult(kacYildiz, true, 150, 3);
+        result.GetComponent<UI__RESULT>().SetResult(kacYildiz, true, _coinCollected, 3);
         SaveSystem.SetMaxLevel(currentLevel + 1);
         SaveSystem.SetStarsOfLevel(currentLevel, kacYildiz);
     }
@@ -127,7 +145,12 @@ public class GameManager : MonoBehaviour
         }
     }
     public bool GetBolumBitti() => _bolumBitti;
-
+    public void CollectCoin() {
+        _coinCollected++;
+        _ownCoin++;
+        SaveSystem.AddToOwnCoin(1);
+        _canvas_UI.AddCoinWihtAnim(_ownCoin);
+    }
 
     // GOSTERGE TIKLAMA VE HATA
     public void SetHataliTiklama()

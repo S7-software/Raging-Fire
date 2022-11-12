@@ -58,6 +58,16 @@ public class CANVAS_UI : MonoBehaviour
     {
         _txtCoin.text = "" + count;
     }
+    public void AddCoinWihtAnim(int coin)
+    {
+        _txtCoin.DOColor(Color.yellow, .2f);
+        _txtCoin.gameObject.transform.DOScale(new Vector3(3f, 3f, 3f), .2f).OnComplete(() =>
+        {
+            _txtCoin.text = "" + coin;
+            _txtCoin.gameObject.transform.DOScale(Vector3.one, .4f).SetEase(Ease.InOutCubic);
+            _txtCoin.DOColor(Color.white, .4f);
+        });
+    }
 
     public void AddMistake()
     {

@@ -7,6 +7,7 @@ public class SaveSystem : MonoBehaviour
   const string LAST_LEVEL = "LastLvl";
     const string MAX_LEVEL = "MaxLvl";
     const string STARS_OF_LEVELS = "stars of levels-";
+    const string COUNT_COIN = "own coin";
 
 
     public static int GetCurrentLevel() { return PlayerPrefs.GetInt(CURRENT_LEVEL, 1); }
@@ -26,5 +27,14 @@ public class SaveSystem : MonoBehaviour
         int temp = GetStarsOfLevel(level);
         PlayerPrefs.SetInt(STARS_OF_LEVELS + level, temp < stars ? stars : temp);
      }
+
+    public static int GetOwnCoin() { return PlayerPrefs.GetInt(COUNT_COIN, 0); }
+    public static void AddToOwnCoin(int coin)
+    {
+        int currenCoin = GetOwnCoin();
+        currenCoin += coin;
+        if (currenCoin < 0) Debug.LogError("Cannot be minus");
+        PlayerPrefs.SetInt(COUNT_COIN, currenCoin);
+    }
 
 }

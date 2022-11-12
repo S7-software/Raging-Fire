@@ -553,6 +553,7 @@ MonoBehaviour:
   - {fileID: 7520812496534790234}
   - {fileID: 5862076240476126231}
   _torchModel: {fileID: 8896983433914794940}
+  _materialOfCoin: {fileID: 2100000, guid: c03d0eb5e2ff049099fef9555f158971, type: 2}
   _yaniyorD: 0
 --- !u!1 &5862076240305376412
 GameObject:
