@@ -41,7 +41,7 @@ public class HAVAI_FISEK : MonoBehaviour
             patlama.transform.SetParent(transform);
             GameObject yildiz = Instantiate(_yilzdiz);
             yildiz.transform.position = patlama.transform.position;
-            yildiz.transform.position += new Vector3(0, 0, 2);
+            yildiz.transform.position += new Vector3(0, 1, 2);
             obj.SetActive(false);
 
         });

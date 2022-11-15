@@ -4,5 +4,6 @@ public enum NamesOfSound
     clickArama, clickCikis, clickGiris,
     KazandiSucsses, KazandiTada,
     patlama,
-    FireWork1
+    FireWork1, FiredTorch,
+    Coin
 }

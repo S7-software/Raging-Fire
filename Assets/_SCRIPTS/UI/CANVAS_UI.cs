@@ -63,6 +63,7 @@ public class CANVAS_UI : MonoBehaviour
         _txtCoin.DOColor(Color.yellow, .2f);
         _txtCoin.gameObject.transform.DOScale(new Vector3(3f, 3f, 3f), .2f).OnComplete(() =>
         {
+            SoundBox.instance.PlayOneShot(NamesOfSound.Coin);
             _txtCoin.text = "" + coin;
             _txtCoin.gameObject.transform.DOScale(Vector3.one, .4f).SetEase(Ease.InOutCubic);
             _txtCoin.DOColor(Color.white, .4f);

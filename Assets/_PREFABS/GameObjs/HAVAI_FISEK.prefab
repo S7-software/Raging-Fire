@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 5625694304477394633}
   - {fileID: 5625694304521020775}
   - {fileID: 5625694304640209079}
-  _yukseklik: 10
+  _yukseklik: 9
   _sure: 1
   _delay: 0.2
   _patlama: {fileID: 5465379729038747224, guid: fe1217e794eac4866a8cb63c7e87f9f2, type: 3}

@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
             if (item.gameObject.tag == Tags.TouchPoint.ToString())
             {
                 Torch torch = item.GetComponent<Torch>();
-                SoundBox.instance.PlayOneShot(NamesOfSound.clickArama);
+                SoundBox.instance.PlayOneShot(NamesOfSound.FiredTorch);
                 item.gameObject.tag = Tags.OnTouchPonit.ToString();
                 torch.SetTorch(true);
                 if (torch.IsCoin())
