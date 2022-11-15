@@ -36,6 +36,7 @@ public class HAVAI_FISEK : MonoBehaviour
         obj.SetActive(true);
         obj.transform.DOLocalMoveY(_yukseklik, _sure).SetDelay(delay).OnComplete(() =>
         {
+            SoundBox.instance.PlayOneShot(NamesOfSound.FireWork1);
             GameObject patlama = Instantiate(_patlama,obj.transform);
             patlama.transform.SetParent(transform);
             GameObject yildiz = Instantiate(_yilzdiz);
