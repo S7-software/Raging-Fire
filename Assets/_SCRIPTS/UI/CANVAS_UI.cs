@@ -12,6 +12,8 @@ public class CANVAS_UI : MonoBehaviour
     [SerializeField] Button  _btnPause, _btnMainClick;
     [SerializeField] Image[] _imgsFail;
     Player _player;
+
+    bool _gecisOn = true;
     //Tween _sagCizgi;
     private void Awake()
     {
@@ -20,15 +22,29 @@ public class CANVAS_UI : MonoBehaviour
         {
             item.DOFade(0, 0);
         }
+        _btnPause.gameObject.SetActive(false);
+
     }
     private void Start()
     {
         SetButtonHandles();
     }
+    private void Update()
+    {
+        if (GECIS.ST.IsRuning()) return;
+        if (_gecisOn)
+        {
+            _gecisOn = false;
+            _btnPause.gameObject.SetActive(true);
+        }
+    }
 
     private void SetButtonHandles()
     {
-        _btnMainClick.onClick.AddListener(() => { _player.Toogle(); });
+        _btnMainClick.onClick.AddListener(() => {
+            if (_gecisOn) return;
+            _player.Toogle();
+        });
         _btnPause.onClick.AddListener(() => { GameManager.instantiate.Pause(); });
     }
 

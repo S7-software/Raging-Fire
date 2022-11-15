@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        GECIS.ST.Out();
         SetUI();
         SetGameObjectsValues();
         SetCoinOfTorch();

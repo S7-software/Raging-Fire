@@ -13,6 +13,7 @@ public class UI_LEVELS : MonoBehaviour
     [SerializeField] float _duration = 0.4f;
     [SerializeField] Button _btnExit;
 
+    int _tempLevel;
     private void Awake()
     {
         STUIAnim.SetAwake(_panel, _canvasGroup);
@@ -50,6 +51,14 @@ public class UI_LEVELS : MonoBehaviour
     void Menu() { GameManager.instantiate.CloneUI_MAIN_MENU(); }
     public void GoToLevel(int hangi)
     {
-        SceneManager.LoadScene(hangi);
+        _tempLevel = hangi;
+        STUIAnim.SetAwake(_panel, _canvasGroup);
+        GECIS.ST.In();
+        Invoke("GoToLevel", 1);
+        
+    }
+    void GoToLevel()
+    {
+        SceneManager.LoadScene(_tempLevel);
     }
 }
